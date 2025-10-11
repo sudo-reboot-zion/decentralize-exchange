@@ -1,20 +1,14 @@
-"use client";
+import { Swap } from "@/components/swap";
+import { getAllPools } from "@/lib/amm";
 
-import { useStacks } from "@/hooks/use-stacks";
-import { redirect } from "next/navigation";
+export const dynamic = "force-dynamic";
 
-export default function Home() {
-  const { userData } = useStacks();
+export default async function Home() {
+  const allPools = await getAllPools();
 
-  if (!userData) {
-    return (
-      <main className="flex min-h-screen flex-col items-center gap-8 p-24">
-        <span>Connect your wallet or search for an address</span>
-      </main>
-    );
-  }
-
-  // If user's wallet is connected, just redirect to the /SP... page
-  // to show their profile
-  redirect(`/${userData.profile.stxAddress.mainnet}`);
+  return (
+    <main className="flex min-h-screen flex-col items-center gap-8 p-24">
+      {allPools.length > 0 ? <Swap pools={allPools} /> : <p>No pools found</p>}
+    </main>
+  );
 }

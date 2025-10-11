@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@hirosystems/clarinet-sdk-wasm": "^3.7.0",
-    "@stacks/connect": "^7.7.1",
+    "@stacks/connect": "^7.10.2",
+    "@stacks/network": "^7.2.0",
     "@stacks/transactions": "^7.2.0",
     "lucide-react": "^0.544.0",
     "next": "15.5.2",
